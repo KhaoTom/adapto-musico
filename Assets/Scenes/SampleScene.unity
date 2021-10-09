@@ -152,6 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a612a7b9378bf4da542c26e9dbaf7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  basevolume: 1
+  basePitch: 1
+  clips:
+  - {fileID: 8300000, guid: 11a64795dd164fb4e81074e627b89a18, type: 3}
+  - {fileID: 8300000, guid: 029cec32b40857a4a89afd0245e1d90c, type: 3}
+  - {fileID: 8300000, guid: ac92e4a1f8889a24ab205cec0ce2ab5d, type: 3}
 --- !u!4 &634157310
 Transform:
   m_ObjectHideFlags: 0
