@@ -49,7 +49,7 @@ public class MusicConductor : MonoBehaviour
         {
             if (influencer.influence > 0f)
             {
-                bpmChanges.Add(Mathf.FloorToInt(influencer.Bpm * influencer.influence));
+                bpmChanges.Add(Mathf.FloorToInt(influencer.bpmOffset * influencer.influence));
             }
         }
         bpm = defaultBpm + bpmChanges.Average();

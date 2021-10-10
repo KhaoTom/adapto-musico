@@ -10,7 +10,7 @@ public class TempoInfluencer : MonoBehaviour
 {
     public List<Transform> inTrigger = new List<Transform>();
 
-    public int Bpm = 90;
+    public int bpmOffset = 90;
     public float influence = 0f;
 
     private SphereCollider triggerCollider;
