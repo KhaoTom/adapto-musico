@@ -9,13 +9,14 @@ public class SimpleSequence : IMusicSequence
 {
     public int[] scaleDegrees;
     public int beatInterval = 1;
+    public int startDelay = 0;
 
     int currentInterval = 0;
     int nextBeat = -1;
 
     public void Start(int currentBeat)
     {
-        nextBeat = currentBeat;
+        nextBeat = currentBeat + startDelay;
     }
 
     public Note GetNote(int currentBeat, Scales currentScale, int currentKey)
@@ -32,15 +33,9 @@ public class SimpleSequence : IMusicSequence
         }
         return Note.None;
     }
-
-    
 }
 
-public static class MusicUtils
+public abstract class SequenceScriptableObject : UnityEngine.ScriptableObject
 {
-    public static int GetScaledNote(int rootNote, int scaleDegree, Scales scale)
-    {
-        int interval = Intervals.FromEnum(scale)[scaleDegree];
-        return rootNote + interval;
-    }
+    public abstract IMusicSequence GetSequence();
 }

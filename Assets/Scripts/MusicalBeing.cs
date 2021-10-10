@@ -11,7 +11,9 @@ public class MusicalBeing : MonoBehaviour
 {
     public AudioMixerGroup mixerGroup;
     public float basevolume = 1.0f;
-    public float basePitch = 1.0f;
+    public int rootOffset = 0;
+
+    public SequenceScriptableObject startSequence;
 
     public AudioClip[] clips;
 
@@ -31,7 +33,7 @@ public class MusicalBeing : MonoBehaviour
         musicConductor = FindObjectOfType<MusicConductor>();
 
         // create the ur AudioSource.
-        var go = new GameObject($"{gameObject.name}Audio0");
+        var go = new GameObject($"{gameObject.name} Audio 0");
         go.transform.SetParent(transform);
         go.transform.localPosition = Vector3.zero;
         var src = go.AddComponent<AudioSource>();
@@ -40,10 +42,7 @@ public class MusicalBeing : MonoBehaviour
         src.dopplerLevel = 0.0f;
         sources.Add(src);
 
-        currentSequence = new SimpleSequence()
-        {
-            scaleDegrees = new int[] { 1, 3, 5, 7 }
-        };
+        currentSequence = startSequence.GetSequence();
         currentSequence.Start(0);
     }
 
@@ -58,7 +57,8 @@ public class MusicalBeing : MonoBehaviour
 
     void HandleBeat(int currentBeat)
     {
-        var note = currentSequence.GetNote(currentBeat, musicConductor.currentScale, musicConductor.currentRootNote);
+        var baseNote = musicConductor.currentRootNote + rootOffset;
+        var note = currentSequence.GetNote(currentBeat, musicConductor.currentScale, baseNote);
         PlayNote(note);
         lastBeatHandled = currentBeat;
     }
@@ -98,7 +98,7 @@ public class MusicalBeing : MonoBehaviour
     AudioSource CloneSource()
     {
         var go = Instantiate<GameObject>(sources[0].gameObject, transform);
-        go.name = $"{gameObject.name}Audio{sources.Count}";
+        go.name = $"{gameObject.name} Audio {sources.Count}";
         var src = go.GetComponent<AudioSource>();
         sources.Add(src);
         return src;
