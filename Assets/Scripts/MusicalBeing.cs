@@ -16,8 +16,6 @@ public class MusicalBeing : MonoBehaviour
     public AudioClip[] clips;
 
     private MusicConductor musicConductor;
-    private TempoSource tempoSource;
-    private ScaleSource scaleSource;
 
     private int lastBeatHandled = -1;
 
@@ -31,8 +29,6 @@ public class MusicalBeing : MonoBehaviour
     void Start()
     {
         musicConductor = FindObjectOfType<MusicConductor>();
-        tempoSource = musicConductor.tempoSource;
-        scaleSource = musicConductor.scaleSource;
 
         // create the ur AudioSource.
         var go = new GameObject($"{gameObject.name}Audio0");
@@ -46,14 +42,14 @@ public class MusicalBeing : MonoBehaviour
 
         currentSequence = new SimpleSequence()
         {
-            scaleDegrees = new int[] { 1, 3, 5 }
+            scaleDegrees = new int[] { 1, 3, 5, 7 }
         };
         currentSequence.Start(0);
     }
 
     void Update()
     {
-        var currentBeat = tempoSource.currentBeat;
+        var currentBeat = musicConductor.currentBeat;
         if (lastBeatHandled < currentBeat)
         {
             HandleBeat(currentBeat);
@@ -62,7 +58,7 @@ public class MusicalBeing : MonoBehaviour
 
     void HandleBeat(int currentBeat)
     {
-        var note = currentSequence.GetNote(currentBeat, scaleSource.currentScale, 69);
+        var note = currentSequence.GetNote(currentBeat, musicConductor.currentScale, 69);
         PlayNote(note);
         lastBeatHandled = currentBeat;
     }

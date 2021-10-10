@@ -5,15 +5,15 @@ using UnityEngine;
 public class ScaleChangeInteractable : MonoBehaviour
 {
     public Scales targetScale;
-    private ScaleSource scaleSource;
+    private MusicConductor conductor;
 
     private void Start()
     {
-        scaleSource = FindObjectOfType<ScaleSource>();
+        conductor = FindObjectOfType<MusicConductor>();
     }
 
     public void DoInteraction()
     {
-        scaleSource.ChangeScale(targetScale);
+        conductor.ChangeScale(targetScale);
     }
 }
