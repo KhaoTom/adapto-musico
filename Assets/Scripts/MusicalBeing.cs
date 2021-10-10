@@ -38,6 +38,7 @@ public class MusicalBeing : MonoBehaviour
         go.transform.localPosition = Vector3.zero;
         var src = go.AddComponent<AudioSource>();
         src.playOnAwake = false;
+        src.outputAudioMixerGroup = mixerGroup;
         src.spatialBlend = 1.0f;
         src.dopplerLevel = 0.0f;
         sources.Add(src);
