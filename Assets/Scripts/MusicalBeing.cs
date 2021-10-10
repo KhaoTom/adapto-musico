@@ -15,7 +15,10 @@ public class MusicalBeing : MonoBehaviour
 
     public AudioClip[] clips;
 
+    private MusicConductor musicConductor;
     private TempoSource tempoSource;
+    private ScaleSource scaleSource;
+
     private int lastBeatHandled = -1;
 
     private List<AudioSource> sources = new List<AudioSource>();
@@ -27,7 +30,9 @@ public class MusicalBeing : MonoBehaviour
 
     void Start()
     {
-        tempoSource = FindObjectOfType<TempoSource>();
+        musicConductor = FindObjectOfType<MusicConductor>();
+        tempoSource = musicConductor.tempoSource;
+        scaleSource = musicConductor.scaleSource;
 
         // create the ur AudioSource.
         var go = new GameObject($"{gameObject.name}Audio0");
@@ -36,11 +41,12 @@ public class MusicalBeing : MonoBehaviour
         var src = go.AddComponent<AudioSource>();
         src.playOnAwake = false;
         src.spatialBlend = 1.0f;
+        src.dopplerLevel = 0.0f;
         sources.Add(src);
 
         currentSequence = new SimpleSequence()
         {
-            notes = new int[] { 69, 72, 76 }
+            scaleDegrees = new int[] { 1, 3, 5 }
         };
         currentSequence.Start(0);
     }
@@ -56,7 +62,7 @@ public class MusicalBeing : MonoBehaviour
 
     void HandleBeat(int currentBeat)
     {
-        var note = currentSequence.GetNote(currentBeat);
+        var note = currentSequence.GetNote(currentBeat, scaleSource.currentScale, 69);
         PlayNote(note);
         lastBeatHandled = currentBeat;
     }
