@@ -16,11 +16,14 @@ public class TempoSource : MonoBehaviour
     public float currentBeatStartTime { get; private set; }
     public int currentBeat { get; private set; }
 
+    private TempoInfluencer[] tempoInfluencers;
+
     void Start()
     {
         bpm = defaultBpm;
         currentBeat = 0;
         currentBeatStartTime = Time.time;
+        tempoInfluencers = FindObjectsOfType<TempoInfluencer>();
     }
 
     void Update()
@@ -31,5 +34,15 @@ public class TempoSource : MonoBehaviour
             currentBeat += 1;
             currentBeatStartTime += timePerBeat;
         }
+
+        List<int> bpmChanges = new List<int>();
+        foreach (var influencer in tempoInfluencers)
+        {
+            if (influencer.influence > 0f)
+            {
+                bpmChanges.Add(Mathf.FloorToInt(influencer.Bpm * influencer.influence));
+            }
+        }
+        bpm = defaultBpm + bpmChanges.Average();
     }
 }
