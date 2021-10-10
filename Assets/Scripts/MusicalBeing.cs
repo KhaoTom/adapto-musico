@@ -17,9 +17,10 @@ public class MusicalBeing : MonoBehaviour
 
     private TempoSource tempoSource;
     private int lastBeatHandled = -1;
-    private int nextNoteNumber = 69;
 
     private List<AudioSource> sources = new List<AudioSource>();
+
+    private IMusicSequence currentSequence;
 
     private static readonly float intervalConstant = Mathf.Pow(2f, 1.0f / 12f);
     private static readonly int middleNoteNumber = 69;
@@ -28,7 +29,7 @@ public class MusicalBeing : MonoBehaviour
     {
         tempoSource = FindObjectOfType<TempoSource>();
 
-        // the ur AudioSource.
+        // create the ur AudioSource.
         var go = new GameObject($"{gameObject.name}Audio0");
         go.transform.SetParent(transform);
         go.transform.localPosition = Vector3.zero;
@@ -36,6 +37,12 @@ public class MusicalBeing : MonoBehaviour
         src.playOnAwake = false;
         src.spatialBlend = 1.0f;
         sources.Add(src);
+
+        currentSequence = new SimpleSequence()
+        {
+            notes = new int[] { 69, 72, 76 }
+        };
+        currentSequence.Start(0);
     }
 
     void Update()
@@ -49,37 +56,47 @@ public class MusicalBeing : MonoBehaviour
 
     void HandleBeat(int currentBeat)
     {
-        PlayNote(nextNoteNumber);
-        nextNoteNumber++;
+        var note = currentSequence.GetNote(currentBeat);
+        PlayNote(note);
         lastBeatHandled = currentBeat;
     }
 
-    void PlayNote(int noteNumber)
+    void PlayNote(Note note)
     {
-        var diff = noteNumber - middleNoteNumber;
-        var pitch = Mathf.Pow(intervalConstant, diff);
-        Debug.Log(pitch);
+        if (note == Note.None) return;
 
+        var diff = note.noteNumber - middleNoteNumber;
+        var pitch = Mathf.Pow(intervalConstant, diff);
+        var volume = basevolume;
+
+        PlayOnNextAvailableSource(clips.RandomItem(), pitch, volume);
+    }
+
+    void PlayOnNextAvailableSource(AudioClip clip, float pitch, float volume)
+    {
+        var src = GetFirstAvailableSource();
+        src.clip = clip;
+        src.pitch = pitch;
+        src.volume = volume;
+        src.Play();
+    }
+
+    AudioSource GetFirstAvailableSource()
+    {
         foreach (var src in sources)
         {
             if (!src.isPlaying)
             {
-                src.clip = clips.RandomItem();
-                src.pitch = pitch;
-                src.Play();
-                return;
+                return src;
             }
         }
-
-        var newSrc = CloneSource();
-        newSrc.clip = clips.RandomItem();
-        newSrc.pitch = pitch;
-        newSrc.Play();
+        return CloneSource();
     }
 
     AudioSource CloneSource()
     {
         var go = Instantiate<GameObject>(sources[0].gameObject, transform);
+        go.name = $"{gameObject.name}Audio{sources.Count}";
         var src = go.GetComponent<AudioSource>();
         sources.Add(src);
         return src;

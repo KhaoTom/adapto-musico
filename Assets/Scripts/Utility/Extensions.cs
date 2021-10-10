@@ -7,4 +7,9 @@ public static class Extensions
     {
         return list[Random.Range(0, list.Count)];
     }
+
+    public static int Plus1Wrap0(this int val, int max)
+    {
+        return (val + 1) % max;
+    }
 }
