@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Player proximity increases influence.
+/// Use physics layers to limit and manage what goes into inTrigger list.
+/// </summary>
 public class TempoInfluencer : MonoBehaviour
 {
     public List<Transform> inTrigger = new List<Transform>();
@@ -13,8 +17,6 @@ public class TempoInfluencer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ADD"); 
-
         inTrigger.Add(other.transform);
         influence = CalculateInfluence(other.transform.position);
     }

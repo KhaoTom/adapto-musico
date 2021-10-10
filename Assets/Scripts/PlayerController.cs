@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Dis be the player.
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     private Camera lookCamera;
@@ -111,8 +114,8 @@ public class PlayerController : MonoBehaviour
             // handle input
             if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2") || Input.GetButtonDown("Fire3") || Input.GetButtonDown("Jump"))
             {
-                followTransform = interactionTrigger.inTrigger[0].transform;
-                canMove = false;
+                /*followTransform = interactionTrigger.inTrigger[0].transform;
+                canMove = false;*/
 
                 interactionTrigger.inTrigger[0].SendMessageUpwards("DoInteraction");
             }

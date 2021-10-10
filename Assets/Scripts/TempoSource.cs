@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Tempo source provides the playback tempo for all musical beings.
-/// It is affected by the player's proximity to tempo adjustment relays.
+/// It is affected by the player's proximity to tempo influencers.
 /// </summary>
 public class TempoSource : MonoBehaviour
 {
