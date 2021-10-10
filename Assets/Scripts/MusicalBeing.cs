@@ -58,7 +58,7 @@ public class MusicalBeing : MonoBehaviour
 
     void HandleBeat(int currentBeat)
     {
-        var note = currentSequence.GetNote(currentBeat, musicConductor.currentScale, 69);
+        var note = currentSequence.GetNote(currentBeat, musicConductor.currentScale, musicConductor.currentRootNote);
         PlayNote(note);
         lastBeatHandled = currentBeat;
     }

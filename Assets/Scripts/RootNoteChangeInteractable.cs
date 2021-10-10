@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScaleChangeInteractable : MonoBehaviour
+public class RootNoteChangeInteractable : MonoBehaviour
 {
-    public Scales targetScale;
+    public int targetNoteNumber;
     private MusicConductor conductor;
 
     private void Start()
     {
-        gameObject.name = $"Change to {targetScale}.";
+        gameObject.name = $"Change root to {targetNoteNumber}";
         conductor = FindObjectOfType<MusicConductor>();
     }
 
     public void DoInteraction()
     {
-        conductor.ChangeScale(targetScale);
+        conductor.ChangeRootNote(targetNoteNumber);
     }
 }

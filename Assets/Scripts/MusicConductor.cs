@@ -10,8 +10,8 @@ using UnityEngine;
 public class MusicConductor : MonoBehaviour
 {
     public int defaultBpm = 90;
-    public Scales defaultScale;
-    public int defaultRootNote;
+    public Scales defaultScale = Scales.Ionian;
+    public int defaultRootNote = 0;
     
 
     private int _bpm;
@@ -30,6 +30,9 @@ public class MusicConductor : MonoBehaviour
         currentBeat = 0;
         currentBeatStartTime = Time.time;
         tempoInfluencers = FindObjectsOfType<TempoInfluencer>();
+
+        currentRootNote = defaultRootNote;
+        currentScale = defaultScale;
     }
 
     void Update()
