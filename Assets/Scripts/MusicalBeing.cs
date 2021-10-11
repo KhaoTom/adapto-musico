@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Events;
 
 /// <summary>
 /// A musical being animates and plays music notes.
@@ -9,6 +10,11 @@ using UnityEngine.Audio;
 /// </summary>
 public class MusicalBeing : MonoBehaviour
 {
+    [System.Serializable]
+    public class OnPlayNoteEvent : UnityEvent<float> { }
+    [System.Serializable]
+    public class OnAllNotesEndEvent : UnityEvent { }
+
     public AudioMixerGroup mixerGroup;
     public float basevolume = 1.0f;
     public int rootOffset = 0;
@@ -17,9 +23,13 @@ public class MusicalBeing : MonoBehaviour
 
     public AudioClip[] clips;
 
+    public OnPlayNoteEvent onPlayNote;
+    public OnAllNotesEndEvent onAllNotesEnd;
+
     private MusicConductor musicConductor;
 
     private int lastBeatHandled = -1;
+    private int lastUpdateNumSrcPlaying = 0;
 
     private List<AudioSource> sources = new List<AudioSource>();
 
@@ -54,6 +64,16 @@ public class MusicalBeing : MonoBehaviour
         {
             HandleBeat(currentBeat);
         }
+
+        int numSrcPlaying = 0;
+        foreach (var src in sources)
+        {
+            if (src.isPlaying) numSrcPlaying++;
+        }
+        if (lastUpdateNumSrcPlaying != numSrcPlaying && numSrcPlaying == 0)
+        {
+            onAllNotesEnd.Invoke();
+        }
     }
 
     void HandleBeat(int currentBeat)
@@ -73,6 +93,8 @@ public class MusicalBeing : MonoBehaviour
         var volume = basevolume;
 
         PlayOnNextAvailableSource(clips.RandomItem(), pitch, volume);
+
+        onPlayNote.Invoke(pitch);
     }
 
     void PlayOnNextAvailableSource(AudioClip clip, float pitch, float volume)
