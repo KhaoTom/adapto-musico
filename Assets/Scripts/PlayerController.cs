@@ -43,7 +43,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        UpdateCameraLook();
+        if (Cursor.lockState == CursorLockMode.Locked)
+            UpdateCameraLook();
         UpdateCharacterMove();
         UpdateCharacterGravity();
         UpdateInteraction();
