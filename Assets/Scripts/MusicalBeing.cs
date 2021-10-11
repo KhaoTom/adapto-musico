@@ -15,6 +15,7 @@ public class MusicalBeing : MonoBehaviour
     [System.Serializable]
     public class OnAllNotesEndEvent : UnityEvent { }
 
+    public int areaId = 0;
     public AudioMixerGroup mixerGroup;
     public float basevolume = 1.0f;
     public int rootOffset = 0;

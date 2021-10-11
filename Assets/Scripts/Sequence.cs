@@ -2,6 +2,7 @@ public interface IMusicSequence
 {
     public void Start(int currentBeat);
     public Note GetNote(int currentBeat, Scales currentScale, int currentKey);
+    public IMusicSequence Clone();
 }
 
 [System.Serializable]
@@ -32,6 +33,17 @@ public class SimpleSequence : IMusicSequence
             return result;
         }
         return Note.None;
+    }
+
+    public IMusicSequence Clone()
+    {
+        var newSeq = new SimpleSequence()
+        {
+            scaleDegrees = scaleDegrees,
+            beatInterval = beatInterval,
+            startDelay = startDelay
+        };
+        return newSeq;
     }
 }
 

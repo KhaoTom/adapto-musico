@@ -9,6 +9,6 @@ public class SimpleSequenceScriptableObject : SequenceScriptableObject
 
     public override IMusicSequence GetSequence()
     {
-        return sequence;
+        return sequence.Clone();
     }
 }
