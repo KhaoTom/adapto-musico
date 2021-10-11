@@ -4816,7 +4816,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f8282cf5cc0d19742b33c5b4985f31b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5046,6 +5046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a612a7b9378bf4da542c26e9dbaf7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaId: 0
   mixerGroup: {fileID: -5316507101675858740, guid: 106f18256578f304da03fc51dedfd4d4, type: 2}
   basevolume: 1
   rootOffset: 0
