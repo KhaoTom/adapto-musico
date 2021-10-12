@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightDimmer : MonoBehaviour
 {
     public float speed = 1;
+    public float minimumIntensity = 0f;
 
     Light targetLight;
 
@@ -15,6 +16,6 @@ public class LightDimmer : MonoBehaviour
 
     void Update()
     {
-        targetLight.intensity -= speed * Time.deltaTime;
+        targetLight.intensity = Mathf.Max(targetLight.intensity - speed * Time.deltaTime, minimumIntensity);
     }
 }

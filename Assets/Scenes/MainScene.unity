@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -461,6 +461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 256867355}
   - component: {fileID: 256867356}
+  - component: {fileID: 256867357}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -544,6 +545,20 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &256867357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256867354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ce2b74683be2048a0b3ce19c374ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 12
+  minimumIntensity: 0
 --- !u!43 &273287685
 Mesh:
   m_ObjectHideFlags: 0
@@ -798,7 +813,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
+  - {fileID: 2100000, guid: 03da9876e97b0f246bdb2cba8009b01b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3926,7 +3941,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
+  - {fileID: 2100000, guid: 03da9876e97b0f246bdb2cba8009b01b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9731,6 +9746,7 @@ GameObject:
   m_Component:
   - component: {fileID: 771785210}
   - component: {fileID: 771785211}
+  - component: {fileID: 771785212}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -9814,6 +9830,20 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &771785212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771785209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ce2b74683be2048a0b3ce19c374ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  minimumIntensity: 0
 --- !u!43 &820248581
 Mesh:
   m_ObjectHideFlags: 0
@@ -10085,6 +10115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  minimumIntensity: 0
 --- !u!1 &957263030
 GameObject:
   m_ObjectHideFlags: 0
@@ -10175,7 +10206,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
+  - {fileID: 2100000, guid: 03da9876e97b0f246bdb2cba8009b01b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15943,7 +15974,7 @@ GameObject:
   - component: {fileID: 1557823627}
   - component: {fileID: 1557823626}
   m_Layer: 0
-  m_Name: Area.0.Being.0.2
+  m_Name: Area.0.Being.1.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15962,7 +15993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaId: 0
-  mixerGroup: {fileID: -5316507101675858740, guid: 106f18256578f304da03fc51dedfd4d4, type: 2}
+  mixerGroup: {fileID: -5198452327068013619, guid: 106f18256578f304da03fc51dedfd4d4, type: 2}
   basevolume: 1
   rootOffset: -12
   startSequence: {fileID: 11400000, guid: ed5092e867e953e4ca57fe6ac2f4d326, type: 2}
@@ -15999,19 +16030,7 @@ MonoBehaviour:
         m_CallState: 2
   onAllNotesEnd:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 935545344}
-        m_TargetAssemblyTypeName: UnityEngine.Light, UnityEngine
-        m_MethodName: set_intensity
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &1557823627
 Transform:
   m_ObjectHideFlags: 0
@@ -16020,7 +16039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557823625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1, y: 17.48, z: 10.7}
+  m_LocalPosition: {x: 5.1, y: 18.1, z: 16.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1726531853}
@@ -20990,9 +21009,9 @@ MonoBehaviour:
   rootOffset: -12
   startSequence: {fileID: 11400000, guid: 3d7bf2fa3fefe9a4c866f4c744fc712e, type: 2}
   clips:
-  - {fileID: 8300000, guid: 11a64795dd164fb4e81074e627b89a18, type: 3}
-  - {fileID: 8300000, guid: 029cec32b40857a4a89afd0245e1d90c, type: 3}
-  - {fileID: 8300000, guid: ac92e4a1f8889a24ab205cec0ce2ab5d, type: 3}
+  - {fileID: 8300000, guid: 821f6525e0424bd40bfea841c5a501cc, type: 3}
+  - {fileID: 8300000, guid: 08de89df37f09df4db6d13e6824c3439, type: 3}
+  - {fileID: 8300000, guid: c65d0740a4e07204ca30db316a53de71, type: 3}
   onPlayNote:
     m_PersistentCalls:
       m_Calls:
@@ -21005,6 +21024,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 771785211}
+        m_TargetAssemblyTypeName: UnityEngine.Light, UnityEngine
+        m_MethodName: set_intensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 40
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -64150,13 +64181,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaId: 0
   mixerGroup: {fileID: -5316507101675858740, guid: 106f18256578f304da03fc51dedfd4d4, type: 2}
-  basevolume: 1
+  basevolume: 0.6
   rootOffset: 0
   startSequence: {fileID: 11400000, guid: 6b2cb18db8e62594fbe01f01530e6184, type: 2}
   clips:
-  - {fileID: 8300000, guid: 11a64795dd164fb4e81074e627b89a18, type: 3}
-  - {fileID: 8300000, guid: 029cec32b40857a4a89afd0245e1d90c, type: 3}
-  - {fileID: 8300000, guid: ac92e4a1f8889a24ab205cec0ce2ab5d, type: 3}
+  - {fileID: 8300000, guid: 821f6525e0424bd40bfea841c5a501cc, type: 3}
+  - {fileID: 8300000, guid: 08de89df37f09df4db6d13e6824c3439, type: 3}
+  - {fileID: 8300000, guid: c65d0740a4e07204ca30db316a53de71, type: 3}
   onPlayNote:
     m_PersistentCalls:
       m_Calls:
@@ -64169,6 +64200,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 256867356}
+        m_TargetAssemblyTypeName: UnityEngine.Light, UnityEngine
+        m_MethodName: set_intensity
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 50
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
