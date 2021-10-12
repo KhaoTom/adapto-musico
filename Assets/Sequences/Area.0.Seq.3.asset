@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f921e5896e0d684aaaebb69ad8bc7c4, type: 3}
-  m_Name: FirstBeat5
+  m_Name: Area.0.Seq.3
   m_EditorClassIdentifier: 
   sequence:
-    scaleDegrees: 0000000000000000000000000000000005000000
-    beatInterval: 8
+    scaleDegrees: 000000000000000001000000000000000000000001000000000000000000000005000000
+    beatInterval: 4
     startDelay: 0
