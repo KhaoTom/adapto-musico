@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AreaVolumeTrigger : MonoBehaviour
 {
     public int areaId;
+
+    public UnityEvent OnEnter;
+    public UnityEvent OnExit;
 
 
     private void OnTriggerEnter(Collider other)
@@ -17,6 +21,7 @@ public class AreaVolumeTrigger : MonoBehaviour
                 being.enabled = true;
             }
         }
+        OnEnter.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
@@ -29,5 +34,6 @@ public class AreaVolumeTrigger : MonoBehaviour
                 being.enabled = false;
             }
         }
+        OnExit.Invoke();
     }
 }

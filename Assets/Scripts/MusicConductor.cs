@@ -24,7 +24,7 @@ public class MusicConductor : MonoBehaviour
 
     private TempoInfluencer[] tempoInfluencers;
 
-    void Start()
+    void Awake()
     {
         bpm = defaultBpm;
         currentBeat = 0;

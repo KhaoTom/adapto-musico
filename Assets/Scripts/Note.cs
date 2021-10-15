@@ -2,11 +2,19 @@ public struct Note
 {
     public int noteNumber;
     public float volume;
+    public int strumCount;
+    public int strumInterval;
+    public float strumDelay;
+    public float strumVolumeChange;
 
-    public Note(int noteNumber, float volume)
+    public Note(int noteNumber, float volume, int strumCount = 0, int strumInterval = 0, float strumDelay = 0, float strumVolumeChange = 0)
     {
         this.noteNumber = noteNumber;
         this.volume = volume;
+        this.strumCount = strumCount;
+        this.strumInterval = strumInterval;
+        this.strumDelay = strumDelay;
+        this.strumVolumeChange = strumVolumeChange;
     }
 
     private static Note _none = new Note(-1, -1f);
