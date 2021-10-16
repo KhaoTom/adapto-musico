@@ -19,8 +19,10 @@ public class MusicalBeing : MonoBehaviour
     public AudioMixerGroup mixerGroup;
     public float basevolume = 1.0f;
     public int rootOffset = 0;
+    public int startBeatDelay = 0;
 
     public SequenceScriptableObject startSequence;
+    public BeatSequenceScriptableObject startBeatSequence;
 
     public AudioClip[] clips;
 
@@ -38,6 +40,7 @@ public class MusicalBeing : MonoBehaviour
     private List<AudioSource> sources = new List<AudioSource>();
 
     private IMusicSequence currentSequence;
+    private SequencePlayer sequencePlayer;
 
     private static readonly float intervalConstant = Mathf.Pow(2f, 1.0f / 12f);
     private static readonly int middleNoteNumber = 69;
@@ -55,14 +58,21 @@ public class MusicalBeing : MonoBehaviour
         src.dopplerLevel = 0.0f;
         sources.Add(src);
 
+        sequencePlayer = new SequencePlayer();
+
         musicConductor = FindObjectOfType<MusicConductor>();
     }
 
     private void OnEnable()
     {
         var currentBeat = musicConductor.currentBeat;
+
         currentSequence = startSequence.GetSequence();
-        currentSequence.Start(currentBeat);
+
+        sequencePlayer.sequence = currentSequence;
+        sequencePlayer.beatSteps = startBeatSequence.beatSteps;
+        sequencePlayer.nextBeat = currentBeat + startBeatDelay;
+
         onEnable.Invoke();
     }
 
@@ -93,7 +103,7 @@ public class MusicalBeing : MonoBehaviour
     void HandleBeat(int currentBeat)
     {
         var baseNote = musicConductor.currentRootNote + rootOffset;
-        var note = currentSequence.GetNote(currentBeat, musicConductor.currentScale, baseNote);
+        var note = sequencePlayer.GetNote(currentBeat, baseNote, musicConductor.currentScale);
         PlayNote(note);
         lastBeatHandled = currentBeat;
     }
@@ -106,24 +116,7 @@ public class MusicalBeing : MonoBehaviour
         var pitch = Mathf.Pow(intervalConstant, diff);
         var volume = basevolume;
 
-        Debug.Log(note.noteNumber);
-
         PlayOnNextAvailableSource(clips.RandomItem(), pitch, volume);
-
-        if (note.strumCount > 0)
-        {
-            var delay = note.strumDelay;
-            var interval = note.strumInterval;
-            var strumVol = volume + note.strumVolumeChange;
-            for (int i = 0; i < note.strumCount; i++)
-            {
-                var strummedNoteNumber = MusicUtils.GetScaledNote(musicConductor.currentRootNote + rootOffset, interval, musicConductor.currentScale);
-                interval += note.strumInterval;
-                StartCoroutine(StrumNote(new Note(strummedNoteNumber, strumVol), delay));
-                delay += note.strumDelay;
-                strumVol += note.strumVolumeChange;
-            }
-        }
 
         onPlayNote.Invoke(pitch);
     }
