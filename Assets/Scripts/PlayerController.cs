@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!canMove)
         {
-            transform.position = followTransform.position - Vector3.up;
+            //transform.position = followTransform.position - Vector3.up;
             return;
         }
 
@@ -142,5 +142,10 @@ public class PlayerController : MonoBehaviour
                 quitTimer = 1;
             }
         }
+    }
+
+    public void SetCanMove(bool canMove)
+    {
+        this.canMove = canMove;
     }
 }

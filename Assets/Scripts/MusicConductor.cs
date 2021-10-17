@@ -64,4 +64,9 @@ public class MusicConductor : MonoBehaviour
     {
         currentRootNote = newRootNote;
     }
+
+    public void ChangeDefaultBPM(int newDefaultBpm)
+    {
+        defaultBpm = newDefaultBpm;
+    }
 }
