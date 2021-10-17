@@ -9,12 +9,23 @@ public class PlayerInteractionTrigger : MonoBehaviour
 {
     public string objectNameFilter = "";
     public List<GameObject> inTrigger = new List<GameObject>();
+    public List<string> excludedNames = new List<string>();
 
     private Hud hud;
 
     public void SetObjectNameFilter(string gameObjectName)
     {
         objectNameFilter = gameObjectName;
+    }
+
+    public void RemoveFromExcludedNames(string gameObjectName)
+    {
+        excludedNames.Remove(gameObjectName);
+    }
+
+    public void AddToExcludedNames(string gameObjectName)
+    {
+        excludedNames.Add(gameObjectName);
     }
 
     private void Start()
@@ -24,7 +35,7 @@ public class PlayerInteractionTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (string.IsNullOrEmpty(objectNameFilter) || objectNameFilter == other.gameObject.name )
+        if (objectNameFilter == other.gameObject.name || !excludedNames.Contains(other.gameObject.name))
             inTrigger.Add(other.gameObject);
 
         UpdateHud();
