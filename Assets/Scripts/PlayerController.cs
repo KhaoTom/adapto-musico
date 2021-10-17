@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    public Transform startLocation;
+
     private Camera lookCamera;
     private CharacterController characterController;
     private MeshRenderer capsuleMeshRenderer;
@@ -37,6 +39,12 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        if (startLocation != null)
+        {
+            transform.position = startLocation.position;
+            transform.rotation = startLocation.rotation;
+        }
+
         targetDirection = lookCamera.transform.localRotation.eulerAngles;
         targetCharacterDirection = transform.localRotation.eulerAngles;
     }

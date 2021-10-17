@@ -7,9 +7,15 @@ using UnityEngine;
 /// </summary>
 public class PlayerInteractionTrigger : MonoBehaviour
 {
+    public string objectNameFilter = "";
     public List<GameObject> inTrigger = new List<GameObject>();
 
     private Hud hud;
+
+    public void SetObjectNameFilter(string gameObjectName)
+    {
+        objectNameFilter = gameObjectName;
+    }
 
     private void Start()
     {
@@ -18,14 +24,20 @@ public class PlayerInteractionTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        inTrigger.Add(other.gameObject);
+        if (string.IsNullOrEmpty(objectNameFilter) || objectNameFilter == other.gameObject.name )
+            inTrigger.Add(other.gameObject);
 
-        hud.ShowInteractionText(inTrigger[0].name);
+        UpdateHud();
     }
 
     private void OnTriggerExit(Collider other)
     {
         inTrigger.Remove(other.gameObject);
+        UpdateHud();
+    }
+
+    public void UpdateHud()
+    {
         if (inTrigger.Count > 0)
         {
             hud.ShowInteractionText(inTrigger[0].name);
@@ -34,5 +46,11 @@ public class PlayerInteractionTrigger : MonoBehaviour
         {
             hud.ShowInteractionText("");
         }
+    }
+
+    public void RemoveFromTrigger(GameObject gameObject)
+    {
+        inTrigger.Remove(gameObject);
+        UpdateHud();
     }
 }

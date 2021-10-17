@@ -9,13 +9,25 @@ public class PositionDrift : MonoBehaviour
     public float speed = 1;
     public float period = 1;
 
-    float elapsed = 0;
+    private float elapsed = 0;
+    private Vector3 startPosition;
+
+    private void Start()
+    {
+        startPosition = transform.localPosition;
+    }
 
 
-    void Update()
+    private void Update()
     {
         elapsed = (elapsed + Time.deltaTime) % period;
         var drift = driftCurve.Evaluate(elapsed * speed);
-        transform.localPosition = influence * drift;
+        transform.localPosition = startPosition + influence * drift;
+    }
+
+    public void ResetStartPosition()
+    {
+        transform.localPosition = Vector3.zero;
+        startPosition = transform.localPosition;
     }
 }
