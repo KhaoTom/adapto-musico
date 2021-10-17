@@ -9,7 +9,7 @@ public class PlayerInteractionTrigger : MonoBehaviour
 {
     public string objectNameFilter = "";
     public List<GameObject> inTrigger = new List<GameObject>();
-    public List<string> excludedNames = new List<string>();
+    public HashSet<string> excludedNames = new HashSet<string>();
 
     private Hud hud;
 
