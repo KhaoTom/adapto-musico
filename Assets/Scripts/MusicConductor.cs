@@ -12,7 +12,7 @@ public class MusicConductor : MonoBehaviour
     public int defaultBpm = 90;
     public Scales defaultScale = Scales.Ionian;
     public int defaultRootNote = 0;
-    
+    public float delaySecondsBeforeFirstBeat = 1f;
 
     private int _bpm;
     public int bpm { get => _bpm; private set { timePerBeat = 60.0f / value; _bpm = value; } }
@@ -27,8 +27,8 @@ public class MusicConductor : MonoBehaviour
     void Awake()
     {
         bpm = defaultBpm;
-        currentBeat = 0;
-        currentBeatStartTime = Time.time;
+        currentBeat = -1;
+        currentBeatStartTime = Time.time + delaySecondsBeforeFirstBeat;
         tempoInfluencers = FindObjectsOfType<TempoInfluencer>();
 
         currentRootNote = defaultRootNote;
