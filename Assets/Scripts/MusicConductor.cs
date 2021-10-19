@@ -69,4 +69,9 @@ public class MusicConductor : MonoBehaviour
     {
         defaultBpm = newDefaultBpm;
     }
+
+    public void ReduceBPM(int amount)
+    {
+        defaultBpm = Mathf.Max(defaultBpm - amount, 10);
+    }
 }
