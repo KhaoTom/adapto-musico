@@ -50,6 +50,41 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!245 &-7042372713485521822
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: End
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 0f015d3d3b0d5774d86604cf3ae1ac7d
+  m_FloatValues:
+    39ac8f10087c6d8479b29c73531f5a7c: 0.536
+    50383b600e45f5d4fa8bfd04743b2ba9: 1.2
+    ef506970f3959c944a81fffe6bdbc298: 2.850226
+    e60ce190d8c75914982ca6a59096ba9f: 3.1596465
+    68b0d704888767148824311bafebdc15: 9.752876
+    32681a049fd8eb949bd1f6e036a86a2b: 5.269681
+    3ff95f542c34ffa4aac7da3669790301: -3.8
+    9a8a63b4fb04e8943b21f9c8486d9301: 52.7
+    813ce225a5099c24da0098642e348c04: 2.850226
+    16c8dfe5108ae1447ad6bb95958f9144: -2.2
+    9fe7ed16c651f1c499b9a60e893230d2: 0.32
+    22dcf956d6a8a2e42be5a16a4e964c6e: 0.137
+    a03b257625e67e94487afee6d3ee9349: 0.22299999
+    eb7c94279d309414189c768fe2fc67e9: 0.618
+    561ba978a9432f64db79de5caa6101a7: 0.629
+    758dbe8801b938e4da5e4b411e4cdec6: 7.3797894
+    c0340a59c47717a4a82a46ec19519579: 0.255
+    06e7e80a7eec59347a721687691b6296: 0.644
+    9354007cca950ef47a251c228ba96884: 15
+    8363468c0b0e8e347be6a3a50ffd232b: 0.632
+    5ed504ec3c49a4042ad140b6a6f33ec7: 0
+    65dc237ee2cfc7348a382112f79111b7: 288
+    c78c3bee2bd133441876d1e4fcd1f11c: 481
+    c848ffcfbc3bbf4458b9d0accc39655f: 0.20799999
+  m_TransitionOverrides: {}
 --- !u!244 &-6861371914808088215
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -150,6 +185,7 @@ AudioMixerController:
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}
+  - {fileID: -7042372713485521822}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -165,7 +201,7 @@ AudioMixerController:
     - 6c031b99e6c5da546a28b017f0d7552e
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: -7042372713485521822}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
